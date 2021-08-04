@@ -21,6 +21,7 @@ public class Member {
 
     private String pwd;
 
+    @Column(length = 15)
     private String auth;
 
 
