@@ -6,6 +6,9 @@
 </head>
 <body class="bg-light">
     <div class="container">
+
+        <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
         <div class="row align-items-center">
             <div class="col-sm-3 text-center position-absolute top-50 start-50 translate-middle">
                 <form role="form" action="/members/signUp" method="post">
