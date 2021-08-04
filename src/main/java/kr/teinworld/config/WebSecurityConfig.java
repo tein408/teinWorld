@@ -18,9 +18,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("home").permitAll()
+                .antMatchers("/", "home").permitAll()
+                .antMatchers("/members/createMemberForm").permitAll()
+                .anyRequest().authenticated()
             .and()
-                .formLogin().permitAll()
+                .formLogin()
+                .loginPage("/members/signUp").permitAll()
                 .usernameParameter("email")
                 .passwordParameter("pwd")
         ;
