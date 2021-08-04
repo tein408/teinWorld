@@ -12,15 +12,15 @@
 <body class="text-center">
 
     <main class="form-signin">
-        <form>
+        <form role="form" action="/members/signUp" method="post">
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="이메일">
+                <input type="email" class="form-control" name="email" id="floatingInput" placeholder="이메일">
                 <label for="floatingInput">이메일</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="비밀번호">
+                <input type="password" class="form-control" name="pwd" id="floatingPassword" placeholder="비밀번호">
                 <label for="floatingPassword">비밀번호</label>
             </div>
 
