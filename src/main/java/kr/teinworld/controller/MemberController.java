@@ -11,6 +11,11 @@ public class MemberController {
         return "/members/signUp";
     }
 
+    @GetMapping(value = "/members/new")
+    public String createMember(){
+        return "/members/createMemberForm";
+    }
+
 
 
 }
