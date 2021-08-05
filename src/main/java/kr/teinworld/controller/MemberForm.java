@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 
-@Getter @Setter
+@Getter
 public class MemberForm {
 
     @NotBlank(message = "회원 이름은 필수입니다.")
@@ -18,4 +18,13 @@ public class MemberForm {
 
     private String auth;
 
+    public MemberForm() {
+    }
+
+    public MemberForm(String name, String email, String pwd, String auth) {
+        this.name = name;
+        this.email = email;
+        this.pwd = pwd;
+        this.auth = auth;
+    }
 }
