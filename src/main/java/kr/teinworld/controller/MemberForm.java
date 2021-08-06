@@ -1,10 +1,11 @@
 package kr.teinworld.controller;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 
-@Getter
+@Getter @Setter
 public class MemberForm {
 
     @NotBlank(message = "회원 이름은 필수입니다.")
@@ -26,4 +27,5 @@ public class MemberForm {
         this.pwd = pwd;
         this.auth = auth;
     }
+
 }
