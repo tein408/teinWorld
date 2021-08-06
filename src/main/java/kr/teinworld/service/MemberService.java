@@ -42,4 +42,10 @@ public class MemberService implements UserDetailsService {
         return memberRepository.findByEmail(email);
     }
 
+    @Transactional
+    public Member findById(Long memberId) {
+        return memberRepository.findOne(memberId);
+    }
+
+
 }
