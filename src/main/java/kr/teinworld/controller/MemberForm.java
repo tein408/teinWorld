@@ -1,7 +1,6 @@
 package kr.teinworld.controller;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 
