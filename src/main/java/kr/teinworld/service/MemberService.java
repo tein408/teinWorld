@@ -31,10 +31,15 @@ public class MemberService implements UserDetailsService {
         return memberRepository.save(member);
     }
 
-
     //param 에 따라 회원 정보 검색하여 반환
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return memberRepository.findByEmail(email);
     }
+
+    @Transactional
+    public Member findByEmail(String email) {
+        return memberRepository.findByEmail(email);
+    }
+
 }
