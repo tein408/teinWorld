@@ -43,4 +43,18 @@ class MemberServiceTest {
         assertEquals(member1.getEmail(), memberRepository.findByEmail(email).getEmail());
     }
 
+    @Test
+    public void findById() throws Exception{
+        //given
+        MemberForm member1 = new MemberForm("kim1", "testEmail1@email.com", "password1", "USER");
+        MemberForm member2 = new MemberForm("kim2", "testEmail2@email.com", "password2", "USER");
+
+        //when
+        memberService.save(member1);
+        memberService.save(member2);
+
+        //then
+        assertEquals(memberService.findById(1L).getName(),"kim1");
+    }
+
 }
