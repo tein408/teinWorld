@@ -16,10 +16,12 @@
         <main class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <form class="needs-validation">
+                    <form class="needs-validation" role="form" action="/members/new"
+                          th:object="${memberForm}" method="post">
+
                         <div class="mb-4">
                             <label for="email" class="form-label">이메일</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
+                            <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="you@example.com">
                             <div class="invalid-feedback">
                                 이메일을 입력해주세요.
                             </div>
@@ -27,7 +29,7 @@
 
                         <div class="mb-4">
                             <label for="name" class="form-label">이름</label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="15글자까지 입력 가능">
+                            <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="15글자까지 입력 가능">
                             <div class="invalid-feedback">
                                 이름을 입력해주세요.
                             </div>
@@ -35,7 +37,7 @@
 
                         <div class="mb-4">
                             <label for="password" class="form-label">비밀번호</label>
-                            <input type="password" class="form-control" name="pwd" id="password" placeholder="비밀번호">
+                            <input type="password" class="form-control" th:field="*{pwd}" id="password" placeholder="비밀번호">
                             <div class="invalid-feedback">
                                 비밀번호를 입력해주세요.
                             </div>
