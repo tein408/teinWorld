@@ -14,7 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class MemberService {
+public class MemberService implements UserDetailsService {
+//DB에서 유저 정보를 직접 가져오는 인터페이스를 구현
 
     private final MemberRepository memberRepository;
 
@@ -30,4 +31,10 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
+
+    //param 에 따라 회원 정보 검색하여 반환
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return memberRepository.findByEmail(email);
+    }
 }
