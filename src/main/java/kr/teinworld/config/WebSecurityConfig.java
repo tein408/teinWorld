@@ -31,10 +31,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
             .and()
                 .formLogin()
-                .loginPage("/members/signUp").permitAll()
+                .loginPage("/members/signUp")
                 .usernameParameter("email")
                 .passwordParameter("pwd")
                 .defaultSuccessUrl("/")
+            .and()
+                .logout()
+                .logoutUrl("/members/logout")
+                .logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
         ;
     }
 
