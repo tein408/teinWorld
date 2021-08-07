@@ -26,9 +26,13 @@
                 </p>
 
                 <p th:if = "${member != null}">
-                    <a class="btn btn-primary btn-lg" href="/members/signOut">로그아웃</a>
+                    <a class="btn btn-primary btn-lg" href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a>
                     <a class="btn btn-secondary btn-lg" href="/members/memberLeave">회원 탈퇴</a>
                     <a class="btn btn-primary btn-lg" href="/members/memberList">회원 목록</a>
+
+                    <form id="logout-form" th:action="@{/members/logout}" method="POST">
+                        <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+                    </form>
                 </p>
 
             </div>
