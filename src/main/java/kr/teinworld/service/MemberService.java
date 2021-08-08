@@ -21,6 +21,7 @@ public class MemberService implements UserDetailsService {
 
     @Transactional
     public Long save(MemberForm memberForm){
+        validateDuplicateMember(memberForm);
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String pwd = encoder.encode(memberForm.getPwd());
@@ -31,15 +32,23 @@ public class MemberService implements UserDetailsService {
         return memberRepository.save(member);
     }
 
+    public void validateDuplicateMember(MemberForm memberForm) {
+        //이메일 검색시 결과 존재 == 이미 존재하는 이메일
+        memberRepository.findByEmail(memberForm.getEmail())
+                .ifPresent(m -> {
+                    throw new IllegalStateException("이미 존재하는 이메일");
+                });
+    }
+
     //param 에 따라 회원 정보 검색하여 반환
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return memberRepository.findByEmail(email);
+        return memberRepository.findByEmail(email).get();
     }
 
     @Transactional
     public Member findByEmail(String email) {
-        return memberRepository.findByEmail(email);
+        return memberRepository.findByEmail(email).get();
     }
 
     @Transactional
