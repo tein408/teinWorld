@@ -24,6 +24,7 @@ public class Member implements UserDetails {
     @Column(name = "member_id")
     private Long id;
 
+    @Column(unique = true)
     private String email;
 
     @Column(length = 15)
