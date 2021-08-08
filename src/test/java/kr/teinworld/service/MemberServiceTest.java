@@ -2,6 +2,7 @@ package kr.teinworld.service;
 
 import kr.teinworld.controller.MemberForm;
 import kr.teinworld.repository.MemberRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,6 +30,21 @@ class MemberServiceTest {
     }
 
     @Test
+    public void duplicateMemberException() throws Exception {
+        //given
+        MemberForm member1 = new MemberForm("kim1", "testEmail1@email.com", "password1", "USER");
+        MemberForm member2 = new MemberForm("kim1", "testEmail1@email.com", "password1", "USER");
+
+        //when
+        memberService.save(member1);
+        IllegalStateException e = assertThrows(IllegalStateException.class,
+                () -> memberService.save(member2));
+
+        //then
+        Assertions.assertThat(e.getMessage()).isEqualTo("이미 존재하는 이메일");
+    }
+
+    @Test
     public void findByEmail() throws Exception{
         //given
         MemberForm member1 = new MemberForm("kim1", "testEmail1@email.com", "password1", "USER");
@@ -40,7 +56,7 @@ class MemberServiceTest {
         String email = "testEmail1@email.com";
 
         //then
-        assertEquals(member1.getEmail(), memberRepository.findByEmail(email).getEmail());
+        assertEquals(member1.getEmail(), memberRepository.findByEmail(email).get().getEmail());
     }
 
     @Test
