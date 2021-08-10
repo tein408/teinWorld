@@ -31,7 +31,7 @@ public class MemberController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "members/dupEmail")
+    @PostMapping(value = "members/dupEmail")
     public String dupEmail (@RequestBody MemberForm memberForm) {
         String message;
         Optional<Member> findEmail = memberService.findByEmail(memberForm.getEmail());
