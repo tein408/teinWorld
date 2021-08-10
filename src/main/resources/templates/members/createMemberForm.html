@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 <head th:replace="fragments/header :: header">
     <title>Tein World</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -24,7 +26,7 @@
                         <div class="mb-4">
                             <label for="email" class="form-label">이메일</label>
                             <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="you@example.com" required>
-                            <div class="invalid-feedback">
+                            <div class="invalid-feedback" id="dupEmail">
                                 이메일을 입력해주세요.
                             </div>
                         </div>
@@ -59,6 +61,7 @@
 
 </div>
 
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
     // 부트스트랩의 유효성평가 사용하기 위해 추가
     (function () {
@@ -77,6 +80,45 @@
                 }, false)
             })
     })()
+
+    $(document).ready(function() {
+        $("#email").blur(function () {
+            var emailData = $("#email").val();
+            var jsonMailData = {
+                "email" : emailData
+            };
+            var jsonData = JSON.stringify(jsonMailData);
+
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            $.ajax({
+                beforeSend: function(xhr){
+                    if (header && token) {
+                        xhr.setRequestHeader(header, token);
+                    }
+                },
+                type: 'post',
+                url: '/members/dupEmail',
+                data: jsonData,
+                contentType: "application/json; charset-utf-8",
+                dataType: 'text',
+                success: function (data){
+                    $('#dupEmail').text(data);
+                    if(data == "이미 사용중인 이메일") {
+                        $('#email').addClass("is-invalid");
+                    } else if(data == "사용 가능한 이메일") {
+                        $('#email').addClass("is-valid");
+                        $('#dupEmail').attr("class","valid-feedback");
+                    }
+                }, error: function(request,status,error) {
+                    console.log("code:" + request.status + "\n"
+                        + "message:" + request.responseText + "\n" + "error:" + error);
+                    $('#dupEmail').replaceWith("error T.T").css("color","red");
+                }
+            })
+        })
+    })
 </script>
 
 </body>
