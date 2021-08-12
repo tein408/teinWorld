@@ -8,12 +8,13 @@ import javax.validation.constraints.NotBlank;
 @Getter @Setter
 public class MemberForm {
 
-    @NotBlank(message = "회원 이름은 필수입니다.")
+    @NotBlank
     private String name;
 
-    @NotBlank(message = "이메일은 필수입니다.")
+    @NotBlank
     private String email;
 
+    @NotBlank
     private String pwd;
 
     private String auth;
