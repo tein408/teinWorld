@@ -102,32 +102,38 @@
             var token = $("meta[name='_csrf']").attr("content");
             var header = $("meta[name='_csrf_header']").attr("content");
 
-            $.ajax({
-                beforeSend: function(xhr){
-                    if (header && token) {
-                        xhr.setRequestHeader(header, token);
+            if(emailData.length > 0) {
+                $.ajax({
+                    beforeSend: function(xhr){
+                        if (header && token) {
+                            xhr.setRequestHeader(header, token);
+                        }
+                    },
+                    type: 'post',
+                    url: '/members/dupEmail',
+                    data: jsonData,
+                    contentType: "application/json; charset-utf-8",
+                    dataType: 'text',
+                    success: function (data){
+
+                            if(data === "이미 사용중인 이메일") {
+                                $('#email').removeClass("is-valid").addClass("is-invalid");
+                                $('#dupEmail').text(data).attr("class","invalid-feedback");
+                            } else if(data === "사용 가능한 이메일") {
+                                $('#email').removeClass("is-invalid").addClass("is-valid");
+                                $('#dupEmail').text(data).attr("class","valid-feedback");
+                                emailCheck = 1;
+                            }
+                    }, error: function(request,status,error) {
+                        console.log("code:" + request.status + "\n"
+                            + "message:" + request.responseText + "\n" + "error:" + error);
+                        $('#dupEmail').replaceWith("error T.T").css("color","red");
                     }
-                },
-                type: 'post',
-                url: '/members/dupEmail',
-                data: jsonData,
-                contentType: "application/json; charset-utf-8",
-                dataType: 'text',
-                success: function (data){
-                    if(data === "이미 사용중인 이메일") {
-                        $('#email').removeClass("is-valid").addClass("is-invalid");
-                        $('#dupEmail').text(data).attr("class","invalid-feedback");
-                    } else if(data === "사용 가능한 이메일") {
-                        $('#email').removeClass("is-invalid").addClass("is-valid");
-                        $('#dupEmail').text(data).attr("class","valid-feedback");
-                        emailCheck = 1;
-                    }
-                }, error: function(request,status,error) {
-                    console.log("code:" + request.status + "\n"
-                        + "message:" + request.responseText + "\n" + "error:" + error);
-                    $('#dupEmail').replaceWith("error T.T").css("color","red");
-                }
-            })
+                })
+            } else if(emailData.length === 0) {
+                $('#email').removeClass("is-valid").addClass("is-invalid");
+                $('#dupEmail').text("이메일을 입력해주세요.").attr("class","invalid-feedback");
+            }
         })
     })
 
