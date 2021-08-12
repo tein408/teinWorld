@@ -7,10 +7,10 @@ Spring Boot Project
 
 ## 개발 환경
 - Java 11
-- Spring boot, Spring Data JPA, Spring Security
-- H2 database
-- gradle
-- thymeleaf
+- Spring boot 2.5.3, Spring Data JPA 2.5.3, Spring Security 5.5.1
+- H2 database 1.4.200
+- gradle 1.0.11
+- thymeleaf 3.0.12
 - bootstrap 5.0.2
 
 
