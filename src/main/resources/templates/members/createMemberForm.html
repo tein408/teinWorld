@@ -88,6 +88,9 @@
         if(emailCheck === 0) {
             $("#frm").attr("onsubmit","event.preventDefault();").removeClass('was-validated');
             return false;
+        } else if(emailCheck === 1){
+            $("#frm").prop("onsubmit", null);
+            return true;
         }
     }
 
@@ -115,10 +118,10 @@
                     contentType: "application/json; charset-utf-8",
                     dataType: 'text',
                     success: function (data){
-
                             if(data === "이미 사용중인 이메일") {
                                 $('#email').removeClass("is-valid").addClass("is-invalid");
                                 $('#dupEmail').text(data).attr("class","invalid-feedback");
+                                emailCheck = 0;
                             } else if(data === "사용 가능한 이메일") {
                                 $('#email').removeClass("is-invalid").addClass("is-valid");
                                 $('#dupEmail').text(data).attr("class","valid-feedback");
