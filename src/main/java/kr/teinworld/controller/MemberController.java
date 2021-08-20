@@ -4,6 +4,7 @@ import kr.teinworld.domain.Member;
 import kr.teinworld.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -53,6 +54,14 @@ public class MemberController {
         return "/members/signUp";
     }
 
+    @GetMapping(value = "/members/memberList")
+    public String memberList(Model model, @AuthenticationPrincipal Member member) {
+        String memberAuth = member.getAuth();
+        if (memberAuth.equals("ROLE_ADMIN")) {
+            model.addAttribute("memberList", memberService.findMembers());
+        }
+        return "/members/membersList";
+    }
 
 
 }
