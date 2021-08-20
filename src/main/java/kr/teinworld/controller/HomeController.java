@@ -25,7 +25,7 @@ public class HomeController {
         if(member != null){
             Member findMember = memberRepository.findOne(member.getId());
             if(findMember != null) {
-                model.addAttribute("member", findMember.getName());
+                model.addAttribute("member", findMember);
             }
         }
         return "home";
