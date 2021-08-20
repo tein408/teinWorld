@@ -13,7 +13,7 @@
             <h3 class="fw-light">회원 기능</h3>
 
             <div th:if = "${member != null}">
-                <p><span th:text="${member}"></span> 님 반갑습니다.</p>
+                <p><span th:text="${member.getName()}"></span> 님 반갑습니다.</p>
             </div>
 
             <div class="container-fluid py-5">
@@ -26,11 +26,17 @@
                 <p th:if = "${member != null}">
                     <a class="btn btn-primary btn-lg" href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a>
                     <a class="btn btn-secondary btn-lg" href="/members/memberLeave">회원 탈퇴</a>
-                    <a class="btn btn-primary btn-lg" href="/members/memberList">회원 목록</a>
-
+                    <a class="btn btn-primary btn-lg" href="/members/memberDetail">회원 정보</a>
                     <form id="logout-form" th:action="@{/members/logout}" method="POST">
                         <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
                     </form>
+
+                    <div th:if="${member != null}">
+                        <p th:if="${member.getAuth() == 'ROLE_ADMIN'}">
+                            <a class="btn btn-primary btn-lg" href="/members/memberList">회원 목록</a>
+                        </p>
+                    </div>
+
                 </p>
 
             </div>
