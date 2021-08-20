@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -56,6 +57,10 @@ public class MemberService implements UserDetailsService {
     @Transactional
     public Member findById(Long memberId) {
         return memberRepository.findOne(memberId);
+    }
+
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
     }
 
 
