@@ -1,6 +1,7 @@
 package kr.teinworld.service;
 
 import kr.teinworld.controller.MemberForm;
+import kr.teinworld.domain.Member;
 import kr.teinworld.repository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -85,6 +86,20 @@ class MemberServiceTest {
 
         //then
         assertEquals(memberService.findMembers().size(),2);
+    }
+
+    @Test
+    public void memberUpdate() throws Exception {
+        //given
+        MemberForm member1 = new MemberForm("kim1", "testEmail1@email.com", "password1", "USER");
+        memberService.save(member1);
+
+        //when
+        MemberForm member2 = new MemberForm("kim2", "testEmail1@email.com", "password1", "USER");
+        Member changeMember = memberService.memberUpdate(member2);
+
+        //then
+        assertEquals(changeMember.getName(), "kim2");
     }
 
 }
