@@ -73,4 +73,18 @@ class MemberServiceTest {
         assertEquals(memberService.findById(1L).getName(),"kim1");
     }
 
+    @Test
+    public void findMembers() throws Exception {
+        //given
+        MemberForm member1 = new MemberForm("kim1", "testEmail1@email.com", "password1", "USER");
+        MemberForm member2 = new MemberForm("kim2", "testEmail2@email.com", "password2", "USER");
+
+        //when
+        memberService.save(member1);
+        memberService.save(member2);
+
+        //then
+        assertEquals(memberService.findMembers().size(),2);
+    }
+
 }
