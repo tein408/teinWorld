@@ -81,5 +81,12 @@ public class MemberService implements UserDetailsService {
         return findMember;
     }
 
+    @Transactional
+    public void memberRemove(Long id) {
+        Member findMember = memberRepository.findOne(id);
+        if(findMember != null) {
+            memberRepository.memberRemove(findMember);
+        }
+    }
 
 }
