@@ -83,13 +83,9 @@ public class MemberController {
          * */
     }
 
-    //TODO: 내 정보 페이지
-    // - 탈퇴 기능을 내 정보 페이지에서 할 수 있도록 이동
-
-    //TODO: 회원탈퇴 기능
-    @PostMapping(value = "/members/leave")
-    public String memberLeave() {
-
+    @GetMapping(value = "/members/leave")
+    public String memberLeave(@AuthenticationPrincipal Member member) {
+        memberService.memberRemove(member.getId());
         return "home";
     }
 
