@@ -63,5 +63,23 @@ public class MemberService implements UserDetailsService {
         return memberRepository.findAll();
     }
 
+    @Transactional
+    public Member memberUpdate(MemberForm memberForm) {
+        //변경 감지 기능을 사용하여 준영속 엔티티 수정
+        //영속성 컨텍스트에서 엔티티 조회 -> 데이터 수정
+        //트랜잭션 내에서 엔티티 재조회, 값 변경 -> 트랜잭션 커밋 시점에 dirty checking 발생
+        //-> DB에 update query 실행
+
+        Optional<Member> member = memberRepository.findByEmail(memberForm.getEmail());
+        Long memberId = member.get().getId();
+        Member findMember = findById(memberId);
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String pwd = encoder.encode(memberForm.getPwd());
+
+        findMember.change(memberForm.getName(), pwd);
+        return findMember;
+    }
+
 
 }
