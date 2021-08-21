@@ -63,5 +63,35 @@ public class MemberController {
         return "/members/membersList";
     }
 
+    @GetMapping(value = "/members/info")
+    public String memberDetail(Model model, @AuthenticationPrincipal Member member) {
+        MemberForm memberForm = new MemberForm(member.getName(), member.getEmail(), member.getPwd(), member.getAuth());
+        model.addAttribute("memberForm", memberForm);
+        return "/members/memberInfo";
+    }
+
+    @PostMapping(value = "/members/info")
+    public String memberInfo(@ModelAttribute("memberForm") MemberForm memberForm, Model model) {
+        Member member = memberService.memberUpdate(memberForm);
+        model.addAttribute("memberForm", member);
+        return "/members/memberInfo";
+
+        /* @ModelAttribute
+         * 파라미터로 넘겨 준 타입의 오브젝트를 자동으로 생성
+         * 생성된 오브젝트(test) HTTP로 넘어 온 값들을 자동으로 바인딩
+         * @ModelAttribute 어노테이션이 붙은 객체가 자동으로 Model객체에 추가되고 뷰단으로 전달
+         * */
+    }
+
+    //TODO: 내 정보 페이지
+    // - 탈퇴 기능을 내 정보 페이지에서 할 수 있도록 이동
+
+    //TODO: 회원탈퇴 기능
+    @PostMapping(value = "/members/leave")
+    public String memberLeave() {
+
+        return "home";
+    }
+
 
 }
