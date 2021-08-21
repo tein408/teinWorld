@@ -71,7 +71,7 @@ public class MemberController {
     }
 
     @PostMapping(value = "/members/info")
-    public String memberInfo(@ModelAttribute("memberForm") MemberForm memberForm, Model model) {
+    public String memberUpdate(@ModelAttribute("memberForm") MemberForm memberForm, Model model) {
         Member member = memberService.memberUpdate(memberForm);
         model.addAttribute("memberForm", member);
         return "/members/memberInfo";
