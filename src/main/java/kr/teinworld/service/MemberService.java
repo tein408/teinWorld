@@ -74,8 +74,13 @@ public class MemberService implements UserDetailsService {
         Long memberId = member.get().getId();
         Member findMember = findById(memberId);
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String pwd = encoder.encode(memberForm.getPwd());
+        String pwd = memberForm.getPwd();
+        if(pwd.length() != 0) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            pwd = encoder.encode(memberForm.getPwd());
+        } else {
+            pwd = member.get().getPwd();
+        }
 
         findMember.change(memberForm.getName(), pwd);
         return findMember;
