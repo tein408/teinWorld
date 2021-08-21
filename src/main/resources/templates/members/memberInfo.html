@@ -55,29 +55,5 @@
         </main>
 
 </div>
-
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
-
-    //부트스트랩의 유효성평가 사용하기 위해 추가
-    (function () {
-        'use strict'
-
-        var forms = document.querySelectorAll('.needs-validation')
-
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-
-</script>
-
 </body>
 </html>
