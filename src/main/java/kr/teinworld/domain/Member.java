@@ -82,4 +82,9 @@ public class Member implements UserDetails {
     }
     //============//
 
+    public void change(String name, String pwd){
+        this.name =  name;
+        this.pwd = pwd;
+    }
+
 }
