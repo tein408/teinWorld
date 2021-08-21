@@ -102,4 +102,17 @@ class MemberServiceTest {
         assertEquals(changeMember.getName(), "kim2");
     }
 
+    @Test
+    public void memberRemove() throws Exception {
+        //given
+        MemberForm member1 = new MemberForm("kim1", "testEmail1@email.com", "password1", "USER");
+        Long saveId = memberService.save(member1);
+
+        //when
+        memberService.memberRemove(saveId);
+
+        //then
+        assertEquals(memberService.findMembers().size(),0);
+    }
+
 }
