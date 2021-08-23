@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -17,4 +18,7 @@ public class BoardRepository {
         return board.getId();
     }
 
+    public List<Board> findAll() {
+        return em.createQuery("select b from Board b order by b.regDate desc", Board.class).getResultList();
+    }
 }
