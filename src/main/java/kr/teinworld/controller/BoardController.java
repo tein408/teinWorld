@@ -29,8 +29,13 @@ public class BoardController {
     public String createBoard(BoardForm boardForm, @AuthenticationPrincipal Member member) {
         Board board = new Board(boardForm.getTitle(), boardForm.getContent(), member, LocalDateTime.now(), 0 ,0);
         boardService.boardCreate(board);
-        return "/boards/boardList";
+        return "redirect:/boards/board";
     }
 
+    @GetMapping(value = "/boards/board")
+    public String boardList(Model model) {
+        model.addAttribute("boards", boardService.findAll());
+        return "boards/boardList";
+    }
 
 }
