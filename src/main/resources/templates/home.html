@@ -36,9 +36,19 @@
                             <a class="btn btn-primary btn-lg" href="/members/memberList">회원 목록</a>
                         </p>
                     </div>
-
                 </p>
 
+            </div>
+
+            <div th:if = "${member != null}">
+                <h3 class="fw-light">게시판</h3>
+
+                <div class="container-fluid py-5">
+                    <p>
+                        <a class="btn btn-primary btn-lg" href="/boards/board">글 목록</a>
+                        <a class="btn btn-primary btn-lg" href="/boards/write">글 쓰기</a>
+                    </p>
+                </div>
             </div>
 
         </div>
