@@ -5,7 +5,7 @@
 <body class="bg-light">
 <div class="container">
 
-    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div th:replace="fragments/bodyHeader :: bodyHeader"></div>
 
         <div class="py-5 text-center">
             <h2>회원 정보</h2>
@@ -14,7 +14,7 @@
         <main class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <form novalidate class="needs-validation" role="form" id = "frm" action="/members/info"
+                    <form novalidate class="needs-validation" role="form" id = "frm" th:action="@{/members/info}"
                           th:object="${memberForm}" method="post">
 
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -47,7 +47,7 @@
                     </form>
 
                     <div class="text-center">
-                        <div th:replace="fragments/footer :: footer"/>
+                        <div th:replace="fragments/footer :: footer"></div>
                     </div>
 
                 </div>

@@ -5,7 +5,7 @@
 <body>
 <div class="container">
 
-    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div th:replace="fragments/bodyHeader :: bodyHeader"></div>
 
     <section class="py-5 text-center container bg-light">
         <div class="row py-lg-5">
@@ -19,21 +19,21 @@
             <div class="container-fluid py-5">
 
                 <p th:if = "${member == null}">
-                    <a class="btn btn-primary btn-lg" href="/members/new">회원 가입</a>
-                    <a class="btn btn-primary btn-lg" href="/members/signUp">로그인</a>
+                    <a class="btn btn-primary btn-lg" th:href="@{/members/new}">회원 가입</a>
+                    <a class="btn btn-primary btn-lg" th:href="@{/members/signUp}">로그인</a>
                 </p>
 
                 <p th:if = "${member != null}">
-                    <a class="btn btn-primary btn-lg" href="#" onclick="document.getElementById('logout-form').submit();">로그아웃</a>
-                    <a class="btn btn-secondary btn-lg" href="/members/leave">회원 탈퇴</a>
-                    <a class="btn btn-primary btn-lg" href="/members/info">회원 정보</a>
+                    <a class="btn btn-primary btn-lg" th:href="@{#}" onclick="document.getElementById('logout-form').submit();">로그아웃</a>
+                    <a class="btn btn-secondary btn-lg" th:href="@{/members/leave}">회원 탈퇴</a>
+                    <a class="btn btn-primary btn-lg" th:href="@{/members/info}">회원 정보</a>
                     <form id="logout-form" th:action="@{/members/logout}" method="POST">
                         <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
                     </form>
 
                     <div th:if="${member != null}">
                         <p th:if="${member.getAuth() == 'ROLE_ADMIN'}">
-                            <a class="btn btn-primary btn-lg" href="/members/memberList">회원 목록</a>
+                            <a class="btn btn-primary btn-lg" th:href="@{/members/memberList}">회원 목록</a>
                         </p>
                     </div>
                 </p>
@@ -45,8 +45,8 @@
 
                 <div class="container-fluid py-5">
                     <p>
-                        <a class="btn btn-primary btn-lg" href="/boards/board">글 목록</a>
-                        <a class="btn btn-primary btn-lg" href="/boards/write">글 쓰기</a>
+                        <a class="btn btn-primary btn-lg" th:href="@{/boards/board}">글 목록</a>
+                        <a class="btn btn-primary btn-lg" th:href="@{/boards/write}">글 쓰기</a>
                     </p>
                 </div>
             </div>
@@ -54,7 +54,7 @@
         </div>
     </section>
 
-    <div th:replace="fragments/footer :: footer"/>
+    <div th:replace="fragments/footer :: footer"></div>
 
 </div>
 </body>
