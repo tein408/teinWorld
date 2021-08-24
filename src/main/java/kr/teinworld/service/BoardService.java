@@ -34,4 +34,9 @@ public class BoardService {
         findBoard.change(title, content);
         return findBoard;
     }
+
+    @Transactional
+    public void remove(Board board) {
+        boardRepository.remove(board);
+    }
 }
