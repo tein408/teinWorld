@@ -24,9 +24,9 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
 
         HttpSession session = request.getSession();
 
-        Member member = memberService.findByEmail(authentication.getName()).get();
+        String memberName = memberService.findByEmail(authentication.getName()).get().getName();
 
-        session.setAttribute("member", member);
+        session.setAttribute("memberName", memberName);
 
         response.sendRedirect("/");
 
