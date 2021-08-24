@@ -45,4 +45,8 @@ public class Board {
         this.content = content;
     }
 
+    public void changeHit(int hit) {
+        this.hit = hit;
+    }
+
 }
