@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final MemberService memberService;
+    private final SuccessHandler successHandler;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -34,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .passwordParameter("pwd")
                 .defaultSuccessUrl("/")
+                .successHandler(successHandler)
             .and()
                 .logout()
                 .logoutUrl("/members/logout")
