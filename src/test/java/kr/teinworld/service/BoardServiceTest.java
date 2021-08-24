@@ -53,4 +53,21 @@ class BoardServiceTest {
         assertEquals(boardService.findAll().size(), 2);
     }
 
+    @Test
+    public void findOne() throws Exception {
+        //given
+        MemberForm member = new MemberForm("kim", "testEmail@email.com", "password", "USER");
+        Long saveId = memberService.save(member);
+        Member findMember = memberService.findById(saveId);
+        Board board1 = new Board("title", "content", findMember, LocalDateTime.now(), 0,0);
+        Board board2 = new Board("title2", "content2", findMember, LocalDateTime.now(), 0,0);
+
+        //when
+        boardService.boardCreate(board1);
+        Long findBoardId = boardService.boardCreate(board2);
+
+        //then
+        assertEquals(boardService.findOne(findBoardId).getTitle(), "title2");
+    }
+
 }
