@@ -8,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
@@ -35,7 +36,15 @@ public class BoardController {
     @GetMapping(value = "/boards/board")
     public String boardList(Model model) {
         model.addAttribute("boards", boardService.findAll());
-        return "boards/boardList";
+        return "/boards/boardList";
+    }
+
+    @GetMapping(value = "/boards/board/{boardId}")
+    public String boardDetail(@PathVariable("boardId") Long boardId, Model model) {
+        System.out.println("boardId = " + boardId);
+        Board board = boardService.findOne(boardId);
+        model.addAttribute("board", board);
+        return "/boards/boardDetail";
     }
 
 }
