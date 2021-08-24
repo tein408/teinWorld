@@ -20,7 +20,7 @@
                             <a class="link-secondary" th:href="@{/boards/board}"><i class="bi bi-chevron-left"></i>back</a>
                         </div>
 
-                        <div class="col col-md-auto" th:if="${board.getMember().getEmail() == session.member.getEmail()}">
+                        <div class="col col-md-auto" th:if="${board.getMember().getEmail() == #authentication.getName()}">
                             <div class="row">
                                 <div class="col col-md-auto">
                                     <a class="btn btn-outline-primary" th:href="@{/boards/board/{boardId}/edit (boardId=${board.getId()})}">수정</a>
