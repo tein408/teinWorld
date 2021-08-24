@@ -41,8 +41,11 @@ public class BoardController {
     }
 
     @GetMapping(value = "/boards/board/{boardId}")
-    public String boardDetail(@PathVariable("boardId") Long boardId, Model model) {
+    public String boardDetail(@PathVariable("boardId") Long boardId, Model model, @AuthenticationPrincipal Member member) {
         Board board = boardService.findOne(boardId);
+        if(!board.getMember().getEmail().equals(member.getEmail())) {
+            boardService.plusHit(boardId);
+        }
         model.addAttribute("board", board);
         return "/boards/boardDetail";
     }
@@ -67,5 +70,6 @@ public class BoardController {
         boardService.remove(board);
         return "redirect:/boards/board";
     }
+
 
 }
