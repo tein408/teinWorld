@@ -30,8 +30,8 @@ public class BoardController {
     @PostMapping(value = "/boards/newBoard")
     public String createBoard(BoardForm boardForm, @AuthenticationPrincipal Member member) {
         Board board = new Board(boardForm.getTitle(), boardForm.getContent(), member, LocalDateTime.now(), 0 ,0);
-        boardService.boardCreate(board);
-        return "redirect:/boards/board";
+        Long boardId = boardService.boardCreate(board);
+        return "redirect:/boards/board/" + boardId;
     }
 
     @GetMapping(value = "/boards/board")
