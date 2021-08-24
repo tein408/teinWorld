@@ -8,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -46,5 +47,18 @@ public class BoardController {
         return "/boards/boardDetail";
     }
 
+    @GetMapping(value = "/boards/board/{boardId}/edit")
+    public String edit(@PathVariable("boardId") Long boardId, Model model) {
+        Board board = boardService.findOne(boardId);
+        model.addAttribute("boardForm", board);
+        return "/boards/editBoardForm";
+    }
+
+    @PostMapping(value = "/boards/board/{boardId}/edit")
+    public String editBoard(@PathVariable("boardId") Long boardId, @ModelAttribute("form") BoardForm boardForm, Model model) {
+        Board board = boardService.edit(boardId, boardForm.getTitle(), boardForm.getContent());
+        model.addAttribute("boardForm", board);
+        return "redirect:/boards/board/{boardId}";
+    }
 
 }
