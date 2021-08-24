@@ -3,7 +3,7 @@ Spring Boot Project
 
 
 ## 개발 목적
-- Web 백엔드의 보편적인 기술 중 하나인 Spring boot와 Spring Security의 기본기 다지기 위함입니다.
+- Web 백엔드의 보편적인 기술 중 하나인 Spring boot와 Spring Security의 기본기를 다지기 위함입니다.
 
 ## 개발 환경
 - Java 11
