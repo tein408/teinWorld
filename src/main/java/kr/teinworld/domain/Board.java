@@ -40,4 +40,9 @@ public class Board {
         this.like = like;
     }
 
+    public void change(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
+
 }
