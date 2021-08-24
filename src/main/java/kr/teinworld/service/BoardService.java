@@ -25,6 +25,6 @@ public class BoardService {
     }
 
     public Board findOne(Long boardId) {
-        return boardRepository.findOnd(boardId);
+        return boardRepository.findOne(boardId);
     }
 }

@@ -22,7 +22,7 @@ public class BoardRepository {
         return em.createQuery("select b from Board b order by b.regDate desc", Board.class).getResultList();
     }
 
-    public Board findOnd(Long boardId) {
+    public Board findOne(Long boardId) {
         return em.find(Board.class, boardId);
     }
 }
