@@ -39,4 +39,11 @@ public class BoardService {
     public void remove(Board board) {
         boardRepository.remove(board);
     }
+
+    @Transactional
+    public void plusHit(Long boardId) {
+        Board findBoard = boardRepository.findOne(boardId);
+        int hit = findBoard.getHit();
+        findBoard.changeHit(++hit);
+    }
 }
