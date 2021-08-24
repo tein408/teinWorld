@@ -41,10 +41,10 @@ public class BoardController {
 
     @GetMapping(value = "/boards/board/{boardId}")
     public String boardDetail(@PathVariable("boardId") Long boardId, Model model) {
-        System.out.println("boardId = " + boardId);
         Board board = boardService.findOne(boardId);
         model.addAttribute("board", board);
         return "/boards/boardDetail";
     }
+
 
 }
