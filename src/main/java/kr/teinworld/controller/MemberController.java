@@ -78,7 +78,7 @@ public class MemberController {
 
         /* @ModelAttribute
          * 파라미터로 넘겨 준 타입의 오브젝트를 자동으로 생성
-         * 생성된 오브젝트(test) HTTP로 넘어 온 값들을 자동으로 바인딩
+         * 생성된 오브젝트(memberForm) HTTP로 넘어 온 값들을 자동으로 바인딩
          * @ModelAttribute 어노테이션이 붙은 객체가 자동으로 Model객체에 추가되고 뷰단으로 전달
          * */
     }
