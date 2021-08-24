@@ -14,7 +14,7 @@
 
             <h3 class="fw-light">회원 기능</h3>
             <div sec:authorize="isAuthenticated()">
-                <p><span th:text="${session.member.getName()}"></span> 님 반갑습니다.</p>
+                <p><span th:text="${session.memberName}"></span> 님 반갑습니다.</p>
             </div>
 
             <div class="container-fluid py-5">
