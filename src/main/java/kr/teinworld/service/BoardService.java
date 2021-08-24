@@ -27,4 +27,11 @@ public class BoardService {
     public Board findOne(Long boardId) {
         return boardRepository.findOne(boardId);
     }
+
+    @Transactional
+    public Board edit(Long boardId, String title, String content) {
+        Board findBoard = boardRepository.findOne(boardId);
+        findBoard.change(title, content);
+        return findBoard;
+    }
 }
