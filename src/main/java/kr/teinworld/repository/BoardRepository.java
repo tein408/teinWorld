@@ -21,4 +21,8 @@ public class BoardRepository {
     public List<Board> findAll() {
         return em.createQuery("select b from Board b order by b.regDate desc", Board.class).getResultList();
     }
+
+    public Board findOnd(Long boardId) {
+        return em.find(Board.class, boardId);
+    }
 }
