@@ -33,7 +33,7 @@ class BoardServiceTest {
         boardService.boardCreate(board);
 
         //then
-        assertEquals(board.getTitle(), "title");
+        assertEquals("title", board.getTitle());
     }
 
     @Test
@@ -50,7 +50,7 @@ class BoardServiceTest {
         boardService.boardCreate(board2);
 
         //then
-        assertEquals(boardService.findAll().size(), 2);
+        assertEquals(2, boardService.findAll().size());
     }
 
     @Test
@@ -67,7 +67,7 @@ class BoardServiceTest {
         Long findBoardId = boardService.boardCreate(board2);
 
         //then
-        assertEquals(boardService.findOne(findBoardId).getTitle(), "title2");
+        assertEquals("title2", boardService.findOne(findBoardId).getTitle());
     }
 
     @Test
@@ -87,7 +87,7 @@ class BoardServiceTest {
         boardService.remove(board1);
 
         //then
-        assertEquals(boardService.findAll().size(), 2);
+        assertEquals(2, boardService.findAll().size());
     }
 
 }
