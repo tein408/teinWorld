@@ -71,7 +71,7 @@ class MemberServiceTest {
         memberService.save(member2);
 
         //then
-        assertEquals(memberService.findById(1L).getName(),"kim1");
+        assertEquals("kim1", memberService.findById(1L).getName());
     }
 
     @Test
@@ -85,7 +85,7 @@ class MemberServiceTest {
         memberService.save(member2);
 
         //then
-        assertEquals(memberService.findMembers().size(),2);
+        assertEquals(2, memberService.findMembers().size());
     }
 
     @Test
@@ -99,7 +99,7 @@ class MemberServiceTest {
         Member changeMember = memberService.memberUpdate(member2);
 
         //then
-        assertEquals(changeMember.getName(), "kim2");
+        assertEquals("kim2", changeMember.getName());
     }
 
     @Test
@@ -112,7 +112,7 @@ class MemberServiceTest {
         memberService.memberRemove(saveId);
 
         //then
-        assertEquals(memberService.findMembers().size(),0);
+        assertEquals(0, memberService.findMembers().size());
     }
 
 }
